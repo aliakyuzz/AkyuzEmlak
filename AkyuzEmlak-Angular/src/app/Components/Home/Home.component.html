@@ -1,30 +1,13 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-    <mat-toolbar [routerLink]="['']">ANA SAYFA</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item [routerLink]="['kategoriler']">Kategori İşlemleri</a>
-      <a mat-list-item [routerLink]="['evler']">Ev İşlemleri</a>
-      <a mat-list-item [routerLink]="['uyeler']">Üye İşlemleri</a>
-      <a mat-list-item (click)="CikisYap()">Çıkış Yap</a>
-
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span> Kamelya Emlak </span>
-    </mat-toolbar>
-    <!-- Add Content Here -->
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<div class="container">
+<div *ngFor="let Ilan of ilanlar">
+    <h1>{{Ilan.Baslik}}</h1>
+    <p>
+        <b>Kategori: </b><a href="#" [routerLink]="['/kategori',Ilan.KategoriId]">{{Ilan.KategoriAdi}}</a> &nbsp;
+        <b>Tarih: </b>{{Ilan.Tarih}} &nbsp;
+        <b>Yazan: </b> <a href="#" [routerLink]="['/uyeilan',Ilan.UyeId]">{{Ilan.UyeKadi}}</a> &nbsp;
+        <b>OKunma: </b>{{Ilan.Okunma}} &nbsp;
+        <a href="#" [routerLink]="['/ilan',Ilan.IlanId]">İlanı incele</a>
+    </p>
+    <hr>
+</div>
+</div>

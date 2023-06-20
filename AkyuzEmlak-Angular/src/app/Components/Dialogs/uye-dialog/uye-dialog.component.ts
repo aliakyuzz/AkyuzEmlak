@@ -1,71 +1,44 @@
-import { Component, OnInit } from '@angular/core';
-import { Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Kategori } from 'src/app/Models/Kategori';
-import { Uye } from 'src/app/Models/Uye';
-import { EvKiralamaServisService } from 'src/app/Services/EvKiralamaServis.service';
+import { Uye } from 'src/app/models/Uye';
 
 @Component({
   selector: 'app-uye-dialog',
   templateUrl: './uye-dialog.component.html',
-  styleUrls: ['./uye-dialog.component.scss']
+  styleUrls: ['./uye-dialog.component.css']
 })
 export class UyeDialogComponent implements OnInit {
-
-  uye: Uye;
-
-  uyeler:Uye[];
-
-  kategoriler: Kategori[];
-
-  form: FormGroup;
-
-  dialogBaslik: string;
-
+  dialogBaslik:string;
+  yeniKayit: Uye;
   islem: string;
+  frm: UntypedFormGroup;
 
   constructor(
-
-    public formBuilder: FormBuilder,
-    public service: EvKiralamaServisService,
     public dialogRef: MatDialogRef<UyeDialogComponent>,
+    public frmBuild: UntypedFormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any
+  ) { 
+    this.islem = data.islem;
 
-  ) {
-
-    this.islem = data.islem,
-      this.uye = data.kayit
-
-    if (this.islem == "ekle") {
-      this.dialogBaslik = "Üye Ekle"
-    } else {
-      this.dialogBaslik = "Üye Düzenle"
+    if(this.islem=="ekle"){
+      this.dialogBaslik= "Üye Ekle";
+      this.yeniKayit= new Uye();
     }
-    this.uyeListe();
-    this.form = this.uyeForm();
-
-   }
-
-   uyeListe() {
-    this.service.uyeliste().subscribe((veri: Uye[]) => {
-      this.uyeler = veri;
-    })
-  }
-
-  uyeForm() {
-    return this.formBuilder.group({
-      uyeAd: [this.uye.uyeAd, [Validators.required]],
-      uyeSoyad: [this.uye.uyeSoyad, [Validators.required]],
-      uyeTel: [this.uye.uyeTel, [Validators.required]],
-      uyeMail: [this.uye.uyeMail, [Validators.required]],
-      uyeParola: [this.uye.uyeParola, [Validators.required]],
-      uyeYetki: [this.uye.uyeYetki, [Validators.required]],
-    });
-
+    if(this.islem=="duzenle"){
+      this.dialogBaslik= "Üye Düzenle"
+      this.yeniKayit= data.kayit;
+    }
+    this.frm = this.FormOlustur();
   }
 
   ngOnInit() {
   }
+  FormOlustur(){
+    return this.frmBuild.group({
+      KullaniciAdi: (this.yeniKayit.KullaniciAdi)
+    })
+  }
 
 }
+

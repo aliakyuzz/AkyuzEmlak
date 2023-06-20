@@ -1,10 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\EvKiralamaApi",
-    "\\EvKiralamaApi\\Controllers",
-    "\\EvKiralamaApi\\Models"
+    "\\emlakportal",
+    "\\emlakportal\\App_Data"
   ],
-  "SelectedNode": "\\EvKiralamaApi\\Controllers\\ServisController.cs",
+  "SelectedNode": "\\emlakportal.sln",
   "PreviewInSolutionExplorer": false
 }

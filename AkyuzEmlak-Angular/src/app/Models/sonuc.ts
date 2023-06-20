@@ -1,6 +1,4 @@
 export class Sonuc {
-
-  Islem: boolean;
-  Mesaj: string;
-
+    islem: boolean;
+    mesaj: string;
 }

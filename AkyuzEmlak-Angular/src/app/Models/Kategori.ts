@@ -1,6 +1,5 @@
-export class Kategori {
-
-    kategoriId: number;
-    kategoriAd: string;
-
+ export class Kategori {
+    KategoriId: number;
+    KategoriAdi: string;
+    KatIlanSay: number;
 }

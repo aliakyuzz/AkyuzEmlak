@@ -1,43 +1,15 @@
-<h2 mat-dialog-title>{{dialogBaslik}}</h2>
-<mat-dialog-content>
-  <form [formGroup]="form">  
-
-<mat-form-field appearance="fill">
-   <mat-label>Üye Adı</mat-label>
-   <input matInput placeholder="Üye Adı" formControlName="uyeAd" name="uyeAd" required type="text">
- </mat-form-field>
-
-
- <mat-form-field appearance="fill">
-     <mat-label>Üye Soyadı</mat-label>
-  <input matInput placeholder="Üye Soyadı" formControlName="uyeSoyad" name="uyeSoyad" required type="text">
-</mat-form-field>
-
-<mat-form-field appearance="fill">
-  <mat-label>Telefon</mat-label>
-  <input matInput placeholder="Telefon" formControlName="uyeTel" name="uyeTel" required type="text">
-</mat-form-field>
-
-<mat-form-field appearance="fill">
-  <mat-label>Mail</mat-label>
-  <input matInput placeholder="Mail" formControlName="uyeMail" name="uyeMail" required type="text">
-</mat-form-field>
-
-<mat-form-field appearance="fill">
- <mat-label>Parola</mat-label>
- <input matInput placeholder="Parola" formControlName="uyeParola" name="uyeParola" required type="text">
-</mat-form-field>
-
-<mat-form-field appearance="fill">
- <mat-label>Yetki</mat-label>
- <input matInput placeholder="Yetki" formControlName="uyeYetki" name="uyeYetki" required type="text">
-</mat-form-field>
+<mat-toolbar color="primary" style="background-color: rgb(54, 113, 168);" class="mat-elevation-z8">
+  <span>{{dialogBaslik}}</span>
+</mat-toolbar>
+<div class="container">
+<form [formGroup]="frm">
+  <mat-form-field appearance="outline">
+   <mat-label>Kullanıcı Adı</mat-label>
+   <input matInput placeholder="Kullanıcı Adı" formControlName="KullaniciAdi" required>
+  </mat-form-field>
 </form>
-</mat-dialog-content>
+</div>
+<button mat-raised-button color="primary" (click)="dialogRef.close(frm.value)" [disabled]="frm.invalid" >Kaydet</button>&nbsp;
+<button mat-raised-button color="warn" (click)="dialogRef.close()" >İptal</button>&nbsp;
 
-<mat-dialog-actions>
-  <button color="primary" mat-button mat-dialog-close (click)="dialogRef.close(form.value)">Ekle</button> &nbsp;
-  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-  <button color="warn"mat-button (click)="dialogRef.close()">Vazgeç</button>
-</mat-dialog-actions>
 

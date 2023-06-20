@@ -1,11 +1,9 @@
 export class Uye {
-
-    uyeId: number;
-    uyeAd: string;
-    uyeSoyad: string;
-    uyeTel: string;
-    uyeMail: string;
-    uyeParola: string;
-    uyeYetki: string;
-
+    UyeId: number;
+    KullaniciAdi: string;
+    Email: string;
+    Sifre: string;
+    AdSoyad: string;
+    Foto: string;
+    UyeAdmin: number;
 }

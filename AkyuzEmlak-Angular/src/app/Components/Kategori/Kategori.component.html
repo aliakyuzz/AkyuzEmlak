@@ -1,46 +1,15 @@
-<br>
-<div>
-  <button (click)="kategoriekle()" mat-mini-fab color="primary" aria-label="Example icon button with a home icon">
-    <mat-icon>add</mat-icon>
-  </button>
-  
-</div>
-
-<br>
-
-
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-  <!-- Position Column -->
-  <ng-container matColumnDef="KategoriAd">
-    <th mat-header-cell *matHeaderCellDef> KategoriAd </th>
-    <td mat-cell *matCellDef="let kategori"> {{kategori.kategoriAd}} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="Duzenle">
-    <th mat-header-cell *matHeaderCellDef> Duzenle </th>
-    <td mat-cell *matCellDef="let kategori"> <button (click)="kategoriduzenle(kategori)" mat-mini-fab color="primary" aria-label="Example icon button with a home icon">
-      <mat-icon>edit</mat-icon>
-    </button> </td>
-  </ng-container>
-
-  <!-- Weight Column -->
-  <ng-container matColumnDef="Sil">
-    <th mat-header-cell *matHeaderCellDef> Sil </th>
-    <td mat-cell *matCellDef="let kategori"> <button (click)="kategoriSil(kategori.kategoriId)" mat-mini-fab color="warn" aria-label="Example icon button with a home icon">
-      <mat-icon>delete</mat-icon>
-    </button>
-   </td>
-  </ng-container>
-
-
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-
+<div class="container">
+  <h1>{{kat?.KategoriAdi}} Kategorisindeki İlanlar</h1>
+  <h3 style="color: red;" *ngIf="ilanlar?.length==0">Henüz bu kategoriye ait ilan girilmemiştir!</h3>
+  <div *ngFor="let Ilan of ilanlar">
+      <h3>{{Ilan.Baslik}}</h3>
+      <p>
+          <b>Kategori: </b>{{Ilan.KategoriAdi}} &nbsp;
+          <b>Tarih: </b>{{Ilan.Tarih}} &nbsp;
+          <b>Yazan: </b> <a href="#" [routerLink]="['/uyeilan',Ilan.UyeId]">{{Ilan.UyeKadi}}</a> &nbsp;
+          <b>OKunma: </b>{{Ilan.Okunma}} &nbsp;
+          <a href="#" [routerLink]="['/ilan',Ilan.IlanId]">İlanı incele</a>
+      </p>
+      <hr>
+  </div>
+  </div>
